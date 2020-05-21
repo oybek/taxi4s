@@ -1,11 +1,9 @@
 package io.github.oybek.taxi4s.domain
 
-import scala.concurrent.duration.FiniteDuration
-
-case class RideOption(clazz: Clazz,
-                      clazzText: String,
-                      clazzLevel: Int,
+case class RideOption(className: Clazz,
+                      classText: String,
+                      classLevel: Int,
                       minPrice: Float,
                       price: Float,
                       priceText: String,
-                      waitingTime: Option[FiniteDuration])
+                      waitingTime: Option[Float])

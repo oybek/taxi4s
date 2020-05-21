@@ -1,9 +1,7 @@
 package io.github.oybek.taxi4s.api.domain
 
 import cats.data.Ior
-import io.github.oybek.taxi4s.domain.{Clazz, Coord, Currency, RideOption}
-
-import scala.concurrent.duration.FiniteDuration
+import io.github.oybek.taxi4s.domain._
 
 case class TaxiInfoReq(clid: String,
                        apikey: String,
@@ -11,7 +9,7 @@ case class TaxiInfoReq(clid: String,
                        clazz: Clazz)
 
 case class TaxiInfoResp(currency: Currency,
-                        distance: Int,
+                        distance: Float,
                         options: List[RideOption],
-                        time: Option[FiniteDuration],
+                        time: Option[Float],
                         timeText: Option[String])

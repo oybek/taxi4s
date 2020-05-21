@@ -6,11 +6,15 @@ object Dependencies {
     val scalaTest = "3.0.5"
     val catsCore = "2.0.0"
     val catsEffect = "2.0.0"
+    val circe = "0.13.0"
   }
 
   val scalaTest = "org.scalatest" %% "scalatest" % V.scalaTest % Test
   val catsCore = "org.typelevel" %% "cats-core" % V.catsCore
   val catsEffect = "org.typelevel" %% "cats-effect" % V.catsEffect
+  val circeCore = "io.circe" %% "circe-core" % V.circe
+  val circeGeneric = "io.circe" %% "circe-generic" % V.circe
+  val circeGenericExtras = "io.circe" %% "circe-generic-extras" % V.circe
 
-  val common = Seq(scalaTest, catsCore, catsEffect)
+  val common = Seq(scalaTest, catsCore, catsEffect, circeCore, circeGeneric, circeGenericExtras)
 }
