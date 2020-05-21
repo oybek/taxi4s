@@ -3,6 +3,6 @@ ThisBuild / organization := "io.github.oybek"
 
 val settings = Compiler.settings ++ Seq()
 
-lazy val ytaxi4s = (project in file("."))
-  .settings(name := "ytaxi4s")
+lazy val taxi4s = (project in file("."))
+  .settings(name := "taxi4s")
   .settings(libraryDependencies ++= Dependencies.common)

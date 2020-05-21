@@ -1,7 +1,7 @@
-package io.github.oybek.ytaxi4s.api.domain
+package io.github.oybek.taxi4s.api.domain
 
 import cats.data.Ior
-import io.github.oybek.ytaxi4s.domain.{Clazz, Coord, Currency, RideOption}
+import io.github.oybek.taxi4s.domain.{Clazz, Coord, Currency, RideOption}
 
 import scala.concurrent.duration.FiniteDuration
 

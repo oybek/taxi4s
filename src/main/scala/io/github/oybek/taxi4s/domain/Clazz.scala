@@ -1,4 +1,4 @@
-package io.github.oybek.ytaxi4s.domain
+package io.github.oybek.taxi4s.domain
 
 sealed trait Clazz
 case object Econom extends Clazz

@@ -1,4 +1,4 @@
-package io.github.oybek.ytaxi4s
+package io.github.oybek.taxi4s
 
 import org.scalatest.{FlatSpec, Matchers}
 
