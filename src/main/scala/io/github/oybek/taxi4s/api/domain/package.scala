@@ -5,8 +5,8 @@ import io.github.oybek.taxi4s.util.Url
 
 package object domain {
 
-  implicit val formUrlReqUrlEncoder = Url.derive[FormUrlReq] {
-    case FormUrlReq(appCode, start, end, level, ref, appmetricaTrackingId) =>
+  implicit val formUrlReqUrlEncoder = Url.derive[FormUrl] {
+    case FormUrl(appCode, start, end, level, ref, appmetricaTrackingId) =>
       "https://" +
         (appCode match {
           case YandexTaxi => "3"

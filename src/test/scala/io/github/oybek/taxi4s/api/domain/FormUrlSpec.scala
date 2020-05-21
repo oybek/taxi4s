@@ -11,7 +11,7 @@ class FormUrlSpec extends FlatSpec with Matchers {
   "formUrl method" should "form correct urls" in {
     val yTaxiApiHttp4s = new YTaxiApiHttp4s[IO]
 
-    val formUrlReq = FormUrlReq(
+    val formUrlReq = FormUrl(
       appCode = YandexTaxi,
       start = Coord(0.1f, 1.0f).some,
       end = Coord(0.2f, 2.0f).some,
