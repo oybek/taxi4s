@@ -9,4 +9,3 @@ case class FormUrlReq(appCode: AppCode,
                       ref: Option[String],
                       appmetricaTrackingId: Option[AppmetricaTrackingId])
 
-case class FormUrlResp(url: String)

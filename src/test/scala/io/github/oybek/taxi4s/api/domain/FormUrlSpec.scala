@@ -20,17 +20,15 @@ class FormUrlSpec extends FlatSpec with Matchers {
       appmetricaTrackingId = AppPage.some
     )
 
-    def formUrlResp(s1: String, s2: String): FormUrlResp =
-      FormUrlResp(
-        s"https://$s1.redirect.appmetrica.yandex.com/route"
-          + "?start-lat=0.1f"
-          + "&start-lon=1.0f"
-          + "&end-lat=2.0f"
-          + "&end-lon=0.2f"
-          + "&level=1"
-          + "&ref=123"
-          + s"&appmetrica_tracking_id=$s2"
-      )
+    def formUrlResp(s1: String, s2: String) =
+      s"https://$s1.redirect.appmetrica.yandex.com/route" +
+        "?start-lat=0.1" +
+        "&start-lon=1.0" +
+        "&end-lat=0.2" +
+        "&end-lon=2.0" +
+        "&level=1" +
+        "&ref=123" +
+        s"&appmetrica_tracking_id=$s2"
 
 
     Url.from(
