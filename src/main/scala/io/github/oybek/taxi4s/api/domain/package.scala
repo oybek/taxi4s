@@ -6,10 +6,20 @@ import io.github.oybek.taxi4s.util.Url
 
 package object domain {
 
+  implicit val zoneInfoEncoder = Url.derive[ZoneInfoReq] {
+    case ZoneInfoReq(clid, apikey, coord) =>
+      "https://taxi-routeinfo.taxi.yandex.net/zone_info?" +
+        Seq(
+          s"clid=$clid",
+          s"apikey=$apikey",
+          s"ll=${coord.longitude},${coord.latitude}"
+        ).mkString("&")
+  }
+
   implicit val taxiInfoEncoder = Url.derive[TaxiInfoReq] {
     case TaxiInfoReq(clid, apikey, path, clazz) =>
       "https://taxi-routeinfo.taxi.yandex.net/taxi_info?" +
-      List(
+      Seq(
         s"clid=$clid",
         s"apikey=$apikey",
         path.fold(
@@ -29,7 +39,7 @@ package object domain {
           case Yango => "2187871"
         }) +
         ".redirect.appmetrica.yandex.com/route?" +
-        List(
+        Seq(
           start.map {
             case Coord(lat, lon) => s"start-lat=$lat&start-lon=$lon"
           },
