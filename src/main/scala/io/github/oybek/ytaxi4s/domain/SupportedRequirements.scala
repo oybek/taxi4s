@@ -1,0 +1,15 @@
+package io.github.oybek.ytaxi4s.domain
+
+sealed trait SupportedRequirements
+case object YellowCarNumber extends SupportedRequirements
+case object NoSmoking extends SupportedRequirements
+case object ChildChair extends SupportedRequirements
+case object Bicycle extends SupportedRequirements
+case object Conditioner extends SupportedRequirements
+case object AnimalTransport extends SupportedRequirements
+case object Universal extends SupportedRequirements
+case object Check extends SupportedRequirements
+case object Ski extends SupportedRequirements
+case object WaitingInTransit extends SupportedRequirements
+case object MeetingArriving extends SupportedRequirements
+case object Luggage extends SupportedRequirements
