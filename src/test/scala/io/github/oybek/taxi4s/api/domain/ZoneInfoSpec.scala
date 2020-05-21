@@ -1,13 +1,11 @@
 package io.github.oybek.taxi4s.api.domain
 
-import cats.effect.IO
 import cats.syntax.all._
-import io.github.oybek.taxi4s.api.YandexTaxiApiHttp4s
 import io.github.oybek.taxi4s.domain._
 import io.github.oybek.taxi4s.util.Url
 import org.scalatest.{FlatSpec, Matchers}
 
-class FormUrlSpec extends FlatSpec with Matchers {
+class ZoneInfoSpec extends FlatSpec with Matchers {
   "formUrl method" should "form correct urls" in {
     val formUrlReq = FormUrl(
       appCode = YandexTaxi,
@@ -33,7 +31,6 @@ class FormUrlSpec extends FlatSpec with Matchers {
       formUrlReq.copy(
         appCode = YandexTaxi,
         appmetricaTrackingId = AppPage.some
-
       )
     ) should be (formUrlResp("3", "1178268795219780156"))
 

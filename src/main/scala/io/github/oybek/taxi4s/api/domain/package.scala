@@ -1,11 +1,27 @@
 package io.github.oybek.taxi4s.api
 
+import cats.data.Ior
 import io.github.oybek.taxi4s.domain._
 import io.github.oybek.taxi4s.util.Url
 
 package object domain {
 
-  implicit val formUrlReqUrlEncoder = Url.derive[FormUrl] {
+  implicit val taxiInfoEncoder = Url.derive[TaxiInfoReq] {
+    case TaxiInfoReq(clid, apikey, path, clazz) =>
+      "https://taxi-routeinfo.taxi.yandex.net/taxi_info?" +
+      List(
+        s"clid=$clid",
+        s"apikey=$apikey",
+        path.fold(
+          a => s"rll=${a.longitude},${a.latitude}",
+          b => s"rll=${b.longitude},${b.latitude}",
+          (a, b) => s"rll=${a.longitude},${a.latitude}~${b.longitude},${b.latitude}"
+        ),
+        s"class=${clazz.toString.toLowerCase}"
+      ).mkString("&")
+  }
+
+  implicit val formUrlEncoder = Url.derive[FormUrl] {
     case FormUrl(appCode, start, end, level, ref, appmetricaTrackingId) =>
       "https://" +
         (appCode match {
