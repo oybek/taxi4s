@@ -7,6 +7,8 @@ object Dependencies {
     val catsCore = "2.0.0"
     val catsEffect = "2.0.0"
     val circe = "0.13.0"
+    val http4s = "0.21.3"
+    val logback = "1.2.3"
   }
 
   val scalaTest = "org.scalatest" %% "scalatest" % V.scalaTest % Test
@@ -15,6 +17,20 @@ object Dependencies {
   val circeCore = "io.circe" %% "circe-core" % V.circe
   val circeGeneric = "io.circe" %% "circe-generic" % V.circe
   val circeGenericExtras = "io.circe" %% "circe-generic-extras" % V.circe
+  val http4s = Seq(
+    "org.http4s" %% "http4s-blaze-client" % V.http4s,
+    "org.http4s" %% "http4s-dsl" % V.http4s,
+    "org.http4s" %% "http4s-circe" % V.http4s,
+    "org.http4s" %% "http4s-okhttp-client" % "0.21.0" % Test
+  )
+  val logger = Seq("ch.qos.logback" % "logback-classic" % V.logback)
 
-  val common = Seq(scalaTest, catsCore, catsEffect, circeCore, circeGeneric, circeGenericExtras)
+  val common = Seq(
+    scalaTest,
+    catsCore,
+    catsEffect,
+    circeCore,
+    circeGeneric,
+    circeGenericExtras
+  ) ++ http4s ++ logger
 }
