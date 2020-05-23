@@ -1,9 +1,10 @@
 package io.github.oybek.taxi4s.api.domain
 
 import cats.data.Ior
-import io.circe.{Json, JsonNumber}
+import io.circe.Json
 import io.github.oybek.taxi4s.domain._
 import io.github.oybek.taxi4s.util.Url
+import org.scalatest.prop.TableDrivenPropertyChecks._
 import org.scalatest.{FlatSpec, Matchers}
 
 class TaxiInfoSpec extends FlatSpec with Matchers {
@@ -78,4 +79,27 @@ class TaxiInfoSpec extends FlatSpec with Matchers {
       )
     )
   }
+
+  "Currency " should "be parsed correct" in {
+    forAll(
+      Table(
+        ("raw", "case object"),
+        ("RUB", RUB),
+        ("KZT", KZT),
+        ("AMD", AMD),
+        ("GEL", GEL),
+        ("AZN", AZN),
+        ("UAH", UAH),
+        ("BYN", BYN),
+        ("BYR", BYR),
+        ("KGS", KGS),
+        ("EUR", EUR),
+        ("MDL", MDL),
+        ("UZS", UZS)
+      )
+    ) { (raw, parsed) =>
+      Json.fromString(raw).as[Currency] should be (Right(parsed))
+    }
+  }
+
 }
