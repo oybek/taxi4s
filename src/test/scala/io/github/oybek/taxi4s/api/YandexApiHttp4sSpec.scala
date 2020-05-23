@@ -1,7 +1,7 @@
 package io.github.oybek.taxi4s.api
 
 import cats.data.Ior
-import cats.effect.{ContextShift, IO}
+import cats.effect.{Blocker, ContextShift, IO}
 import io.github.oybek.taxi4s.api.domain.TaxiInfoReq
 import io.github.oybek.taxi4s.domain.{Coord, Econom}
 import org.http4s.client.blaze.BlazeClientBuilder
@@ -16,37 +16,8 @@ import scala.concurrent.duration._
 class YandexApiHttp4sSpec extends FlatSpec with Matchers {
 
   implicit val ctx = IO.contextShift(global)
+  implicit val blocker = Blocker.liftExecutionContext(global)
 
   "testing" must "be by hand" in {
-    println("hi")
-    OkHttpBuilder
-        .withDefaultClient(blocker = )
-    BlazeClientBuilder[IO](global).withDefaultSslContext
-      .withIdleTimeout(Duration.Inf)
-      .withRequestTimeout(Duration.Inf)
-      .withResponseHeaderTimeout(Duration.Inf)
-      .resource
-      .use { client =>
-        val http = Logger(logBody = true, logHeaders = true)(client)
-        val yandexTaxiApi = new YandexTaxiApiHttp4s[IO](http)
-        yandexTaxiApi
-          .taxiInfo(
-            TaxiInfoReq(
-              clid = "gdetram",
-              apikey = "e94719aa825141eeb25f0d36e8056274",
-              path = Ior.both(
-                Coord(60.659566f, 56.841099f),
-                Coord(60.598800f, 56.837791f)
-              ),
-              clazz = Econom
-            )
-          )
-          .flatMap { x =>
-            IO {
-              println("hhhhhhhhhhhhhhhhhhhhhi:" + x)
-            }
-          }
-      }
-      .unsafeRunSync()
   }
 }
