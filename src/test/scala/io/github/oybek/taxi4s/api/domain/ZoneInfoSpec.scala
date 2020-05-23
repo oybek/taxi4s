@@ -6,6 +6,7 @@ import io.circe.Json
 import io.github.oybek.taxi4s.domain._
 import io.github.oybek.taxi4s.util.Url
 import org.scalatest.{FlatSpec, Matchers}
+import org.scalatest.prop.TableDrivenPropertyChecks._
 
 class ZoneInfoSpec extends FlatSpec with Matchers {
   "zoneInfo method" should "form correct urls" in {
@@ -21,6 +22,28 @@ class ZoneInfoSpec extends FlatSpec with Matchers {
         "&apikey=123" +
         "&ll=1.0,0.1"
     )
+  }
+
+  "Supported requirements" should "be parsed correct" in {
+    forAll(
+      Table(
+        ("string", "case object"),
+        ("animaltransport",    AnimalTransport),
+        ("bicycle",            Bicycle),
+        ("check",              Check),
+        ("childchair",         ChildChair),
+        ("conditioner",        Conditioner),
+        ("luggage",            Luggage),
+        ("meeting_arriving",   MeetingArriving),
+        ("nosmoking",          NoSmoking),
+        ("ski",                Ski),
+        ("universal",          Universal),
+        ("waiting_in_transit", WaitingInTransit),
+        ("yellowcarnumber",    YellowCarNumber),
+      )
+    ) { (raw, parsed) =>
+      Json.fromString(raw).as[SupportedRequirements] should be (Right(parsed))
+    }
   }
 
   "ZoneInfoResp" should "be parsed correct" in {
