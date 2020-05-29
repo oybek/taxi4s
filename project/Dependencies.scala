@@ -24,6 +24,7 @@ object Dependencies {
     "org.http4s" %% "http4s-okhttp-client" % "0.21.0" % Test
   )
   val logger = Seq("ch.qos.logback" % "logback-classic" % V.logback)
+  val scalaMock = "org.scalamock" %% "scalamock" % "4.4.0" % Test
 
   val common = Seq(
     scalaTest,
@@ -31,6 +32,7 @@ object Dependencies {
     catsEffect,
     circeCore,
     circeGeneric,
-    circeGenericExtras
+    circeGenericExtras,
+    scalaMock
   ) ++ http4s ++ logger
 }

@@ -6,6 +6,6 @@ case class FormUrl(appCode: AppCode,
                    start: Option[Coord] = None,
                    end: Option[Coord] = None,
                    level: Option[Int] = None,
-                   ref: Option[String],
-                   appmetricaTrackingId: Option[AppmetricaTrackingId])
+                   ref: Option[String] = None,
+                   appmetricaTrackingId: Option[AppmetricaTrackingId] = None)
 
