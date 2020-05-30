@@ -5,25 +5,22 @@ Comfortable interface for working with taxi service api
 ## Usage
 
 ```scala
-val userLocation = Coord(56.841099f, 60.659566f)
-val cinemaLocation = Coord(56.837791f, 60.598800f)
-val yandexTaxiApi = new YandexTaxiApiHttp4s[IO](client)
+import YandexTaxiSyntax._
+
+implicit val cfg = YandexTaxiSyntax.Cfg(clid="", apiKey="")
+implicit val yandexTaxiApi = new YandexTaxiApiHttp4s[IO](client)
+
+val user = Coord(56.841099f, 60.659566f)
+val cinema = Coord(56.837791f, 60.598800f)
 
 for {
-  taxiInfo <- yandexTaxiApi.taxiInfo(
-    TaxiInfoReq(
-      clid = clid,
-      apikey = apikey,
-      path = Ior.both(userLocation, cinemaLocation),
-      clazz = Business
-    )
-  )
+  taxiInfo <- (user to cinema).request(Econom)
   rideOpt = taxiInfo
     .options
-    .find(_.className == Business)
+    .find(_.className == Econom)
   replyToUser =
     rideOpt.fold(
-      "No business tariffs for your path at current moment"
+      "No econom tariffs for your path at current moment"
     )(ride =>
       s"""
          |Taxi arrives in ${ride.waitingTime.getOrElse("unknown")} seconds
